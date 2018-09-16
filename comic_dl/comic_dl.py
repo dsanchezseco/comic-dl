@@ -175,7 +175,8 @@ class ComicDL(object):
             # @dsanchezseco
             # read config file and download each item of list
             data = json.load(open(CONFIG_FILE))
-            #TODO: if auto sync gist pull config to check for changes
+            #if auto sync gist pull config to check for changes
+            globalFunctions.autoSync()
 
             # common args
             sorting_order = data["sorting_order"]
@@ -202,7 +203,8 @@ class ComicDL(object):
                     pbar_comic.write('[Comic-dl] Auto processing with error for %s : %s ' % (elKey, ex))
             pbar_comic.set_postfix()
             pbar_comic.close()
-            #TODO: if auto sync push new config file to gist
+            #if auto sync push new config file to gist
+            globalFunctions.autoSync()
 
             sys.exit()
 

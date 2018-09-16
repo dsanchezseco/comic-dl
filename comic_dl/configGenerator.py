@@ -2,7 +2,7 @@
 import os
 import json
 from builtins import input
-
+import globalFunctions
 
 CONFIG_FILE="config.json"
 
@@ -188,10 +188,10 @@ class configGenerator(object):
         gist["autoSync"] = input(">> ")
 
         #first sync, either pull or upload the current file
-        #TODO:
-
         data["gist"] = gist
         json.dump(data, open(CONFIG_FILE, 'w'), indent=4)
+
+        globalFunctions.autoSync()
 
     def genComicsObject(self):
         comics = {}

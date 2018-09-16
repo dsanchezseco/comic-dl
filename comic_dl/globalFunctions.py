@@ -247,4 +247,6 @@ class GlobalFunctions(object):
 
     def autoSync(self):
         #TODO: sync config file with gist repo
+        #Pull/push always?
+        print("WIP syncing config file..."
         pass
