@@ -138,7 +138,7 @@ class GlobalFunctions(object):
             print("CBZ File : {0}".format(cbz_file_name))
 
             try:
-                """If the .cbz file exists, we don't need to make it again. If we do make it again, it'll make the 
+                """If the .cbz file exists, we don't need to make it again. If we do make it again, it'll make the
                 .zip file and will hit and exception about file existing already. This raised #105.
                 So, to fix the #105, we'll add this check and make things work just fine."""
                 if os.path.isfile(str(cbz_file_name) + ".cbz"):
@@ -244,3 +244,7 @@ class GlobalFunctions(object):
             return 0
         finally:
             pbar.close()
+
+    def autoSync(self):
+        #TODO: sync config file with gist repo
+        pass

@@ -31,6 +31,8 @@ class ComicDL(object):
                             help='Download new chapters automatically (needs config file!)')
         parser.add_argument('-c', '--config', action='store_true',
                             help='Generates config file for autodownload function')
+        parser.add_argument('-sy', '--sync', action='store_true',
+                            help='Sync the config file on Github\'s gist')
         parser.add_argument('-dd', '--download-directory', nargs=1,
                             help='Decides the download directory of the comics/manga.', default=[os.getcwd()])
         parser.add_argument('-rn', '--range', nargs=1,
@@ -114,6 +116,10 @@ class ComicDL(object):
             print("API Provided By Manga Eden : http://www.mangaeden.com/")
             sys.exit()
 
+        if args.sync:
+            print("WIP, syncing the config file with the configured gists")
+            sys.exit()
+
         if args.chapter_id:
             force_download = False
 
@@ -169,6 +175,8 @@ class ComicDL(object):
             # @dsanchezseco
             # read config file and download each item of list
             data = json.load(open(CONFIG_FILE))
+            #TODO: if auto sync gist pull config to check for changes
+
             # common args
             sorting_order = data["sorting_order"]
             download_directory = data["download_directory"]
@@ -194,6 +202,8 @@ class ComicDL(object):
                     pbar_comic.write('[Comic-dl] Auto processing with error for %s : %s ' % (elKey, ex))
             pbar_comic.set_postfix()
             pbar_comic.close()
+            #TODO: if auto sync push new config file to gist
+
             sys.exit()
 
         # config generator
