@@ -13,6 +13,7 @@ import os
 import time
 import json
 import configGenerator
+import globalFunctions
 from manga_eden import mangaChapters
 from manga_eden import mangaChapterDownload
 from manga_eden import mangaSearch
@@ -118,6 +119,7 @@ class ComicDL(object):
 
         if args.sync:
             print("WIP, syncing the config file with the configured gists")
+            globalFunctions.GlobalFunctions().autoSync(CONFIG_FILE)
             sys.exit()
 
         if args.chapter_id:
@@ -173,10 +175,11 @@ class ComicDL(object):
 
         if args.auto:
             # @dsanchezseco
+            #if auto sync gist pull config to check for changes
+            globalFunctions.GlobalFunctions().autoSync(CONFIG_FILE)
+
             # read config file and download each item of list
             data = json.load(open(CONFIG_FILE))
-            #if auto sync gist pull config to check for changes
-            globalFunctions.autoSync()
 
             # common args
             sorting_order = data["sorting_order"]
@@ -204,7 +207,7 @@ class ComicDL(object):
             pbar_comic.set_postfix()
             pbar_comic.close()
             #if auto sync push new config file to gist
-            globalFunctions.autoSync()
+            globalFunctions.GlobalFunctions().autoSync(CONFIG_FILE)
 
             sys.exit()
 

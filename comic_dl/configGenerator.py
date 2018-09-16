@@ -181,7 +181,8 @@ class configGenerator(object):
         print("Gist personal access token: (current: " + gist["token"] + ")")
         gist["token"] = input(">> ")
 
-        print("Gist url: (current: " + gist["repo"] + ")")
+        #TODO: check is only the required id instead the full url
+        print("Gist url(just the id): (current: " + gist["repo"] + ")")
         gist["repo"] = input(">> ")
 
         print("Auto sync on auto download? ['true' | 'false'] (current: " + gist["autoSync"] + ")")
@@ -191,7 +192,7 @@ class configGenerator(object):
         data["gist"] = gist
         json.dump(data, open(CONFIG_FILE, 'w'), indent=4)
 
-        globalFunctions.autoSync()
+        globalFunctions.GlobalFunctions().autoSync(CONFIG_FILE)
 
     def genComicsObject(self):
         comics = {}

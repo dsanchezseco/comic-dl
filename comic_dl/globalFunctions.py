@@ -14,13 +14,12 @@ import img2pdf
 import math
 import threading
 from tqdm import tqdm
+from simplegist import Simplegist
 is_py2 = sys.version[0] == '2'
 if is_py2:
     import Queue as queue
 else:
     import queue as queue
-
-
 
 class GlobalFunctions(object):
     def page_downloader(self, manga_url, scrapper_delay=5, **kwargs):
@@ -245,8 +244,16 @@ class GlobalFunctions(object):
         finally:
             pbar.close()
 
-    def autoSync(self):
+    def autoSync(self, configFile):
         #TODO: sync config file with gist repo
+        data = json.load(open('config.json'))
+        gist = {}
+        if "gist" in data:
+            gist = data["gist"]
+        else:
+            print("Error, no gist config found. Run 'comic-dl.py -c' first to configure it")
+            sys.exit()
+
         #Pull/push always?
         print("WIP syncing config file..."
         pass
